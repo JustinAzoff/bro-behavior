@@ -30,7 +30,12 @@ function do_check(c: connection)
 }
 
 #others needed?
-event new_connection_contents(c: connection)
+event connection_established(c: connection)
+{
+    do_check(c);
+}
+
+event connection_rejected(c: connection)
 {
     do_check(c);
 }
