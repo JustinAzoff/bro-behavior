@@ -17,7 +17,7 @@ export {
 event bro_init()
 {
     local ro: SumStats::Reducer = [$stream="tcp.outbound", $apply=set(SumStats::SUM)];
-    local ri: SumStats::Reducer = [$stream="tcp.inbound", $apply=set(SumStats::SUM)];
+    local ri: SumStats::Reducer = [$stream="tcp.inbound",  $apply=set(SumStats::SUM)];
     SumStats::create([$name="count-tcp-outbound",
                       $epoch=1days,
                       $reducers=set(ro),
@@ -42,7 +42,7 @@ event bro_init()
                       $threshold_series=threshold_vector,
                       $threshold_crossed(key: SumStats::Key, result: SumStats::Result) =
                         {
-                        local r = result["tcp.outbound"];
+                        local r = result["tcp.inbound"];
                         Log::write(LOG, [$ts=network_time(), $host=key$host, $t=TCP_INBOUND, $num=r$num]);
                         }]);
 }
