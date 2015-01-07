@@ -29,13 +29,10 @@ function do_check(c: connection)
     }
 }
 
-#others needed?
 event connection_established(c: connection)
 {
-    do_check(c);
+    if( c$orig$state == TCP_ESTABLISHED &&
+        c$resp$state == TCP_ESTABLISHED ) {
+        do_check(c);
+    }
 }
-
-#event connection_rejected(c: connection)
-#{
-#    do_check(c);
-#}
