@@ -35,7 +35,7 @@ event connection_established(c: connection)
     do_check(c);
 }
 
-event connection_rejected(c: connection)
-{
-    do_check(c);
-}
+#event connection_rejected(c: connection)
+#{
+#    do_check(c);
+#}
